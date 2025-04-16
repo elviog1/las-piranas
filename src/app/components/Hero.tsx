@@ -13,7 +13,7 @@ export default function Hero() {
             </p>
             <div className="flex flex-wrap gap-4">
               <button>
-                <Link className="bg-green-600 hover:bg-green-700 duration-200 p-3 rounded" href="/about">Conoce más</Link>
+                <Link className="bg-green-600 hover:bg-green-700 duration-200 p-3 rounded" href="/nosotros">Conoce más</Link>
               </button>
               <button >
                 <Link className="bg-sky-600 hover:bg-sky-700 duration-200 p-3 rounded" href="/players">Nuestros jugadores</Link>

@@ -5,7 +5,7 @@ import React from "react";
 export default function Navbar() {
   const navItems = [
     { href: "/", label: "Inicio" },
-    { href: "/about", label: "Sobre Nosotros" },
+    { href: "/nosotros", label: "Sobre Nosotros" },
     { href: "/players", label: "Jugadores" },
     { href: "/news", label: "Noticias" },
   ];
