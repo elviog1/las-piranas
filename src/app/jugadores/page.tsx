@@ -1,9 +1,9 @@
 "use client";
-import Image from "next/image";
 import React, { useState } from "react";
+import CardPlayer, { PlayerProps } from "../components/CardPlayer";
 
 export default function page() {
-  const team = [
+  const team:PlayerProps[] = [
     {
       id: 1,
       type: "male",
@@ -102,35 +102,36 @@ export default function page() {
       </h1>
       <div className="w-full">
         <div className="grid gap-4 w-full max-w-md mx-auto grid-cols-3 mb-8">
-          <button className="py-2 cursor-pointer hover:text-green-400 border-2 rounded border-green-400" onClick={() => setFilter("all")}>Todos</button>
-          <button className="py-2 cursor-pointer hover:text-green-400 border-2 rounded border-green-400" onClick={() => setFilter("male")}>Masculino</button>
-          <button className="py-2 cursor-pointer hover:text-green-400 border-2 rounded border-green-400" onClick={() => setFilter("female")}>Femenino</button>
+          <button
+            className="py-2 cursor-pointer hover:text-green-400 border-2 rounded border-green-400"
+            onClick={() => setFilter("all")}
+          >
+            Todos
+          </button>
+          <button
+            className="py-2 cursor-pointer hover:text-green-400 border-2 rounded border-green-400"
+            onClick={() => setFilter("male")}
+          >
+            Masculino
+          </button>
+          <button
+            className="py-2 cursor-pointer hover:text-green-400 border-2 rounded border-green-400"
+            onClick={() => setFilter("female")}
+          >
+            Femenino
+          </button>
         </div>
 
         <div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredTeam.map((player) => (
-              <div key={player.id} className={` ${player.type === "male" ? "hover:shadow-xl shadow-green-500/50" : "hover:shadow-xl shadow-sky-500/50"} overflow-hidden border-2 duration-200`}>
-                <div className="relative h-[300px]">
-                  <Image
-                    src={player.photo}
-                    alt={player.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div
-                  className={`${
-                    player.type === "male" ? "bg-green-600" : "bg-sky-600"
-                  }  text-white`}
-                >
-                  <p className="p-4">{player.name}</p>
-                </div>
-                <div className="pt-4 p-4">
-                  <p className="text-muted-foreground">{player.position}</p>
-                </div>
-              </div>
+              <CardPlayer
+                key={player.id}
+                name={player.name}
+                position={player.position}
+                type={player.type}
+                photo={player.photo}
+              />
             ))}
           </div>
         </div>
