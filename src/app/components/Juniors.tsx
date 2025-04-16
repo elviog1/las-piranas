@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Juniors() {
   return (
-    <section className="py-12 hover:border-sky-500 border-2 duration-200 rounded-xl p-8">
+    <section className="py-12 border-2 border-sky-500 duration-200 hover:shadow-xl shadow-sky-500/50 rounded-xl p-8">
         <h2 className="text-3xl font-bold mb-8 text-center text-green-600">Las Pirañitas</h2>
         <div className="grid gap-8 lg:grid-cols-2 items-center">
           <div className="relative h-[300px] rounded-lg overflow-hidden">

@@ -11,7 +11,7 @@ export default function page() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="relative h-[300px] md:h-auto">
               <Image
-                src="/About1.jpg?height=600&width=800"
+                src="/About1.jpg"
                 alt="Equipo Las Pirañas"
                 fill
                 className="object-cover rounded"
@@ -59,7 +59,7 @@ export default function page() {
             </div>
             <div className="relative h-[300px] md:h-auto md:order-2">
               <Image
-                src="/yesi.webp?height=600&width=800"
+                src="/yesi.webp"
                 alt="Cuerpo técnico de Las Pirañas"
                 fill
                 className="object-cover object-[0_10%]"
@@ -73,7 +73,7 @@ export default function page() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="relative h-[300px] md:h-auto">
               <Image
-                src="/About2.jpg?height=600&width=800"
+                src="/About2.jpg"
                 alt="Instalaciones de entrenamiento"
                 fill
                 className="object-cover"
@@ -125,7 +125,7 @@ export default function page() {
             </div>
             <div className="relative h-[300px] md:h-auto md:order-2">
               <Image
-                src="/About3.webp?height=600&width=800"
+                src="/About3.webp"
                 alt="Logros del equipo"
                 fill
                 className="object-cover"

@@ -3,7 +3,7 @@ import React from "react";
 
 export default function CardClub({title,description,img} :any) {
   return (
-    <div className="rounded-lg border-2 hover:border-sky-500 duration-200  shadow-sm">
+    <div className="rounded-lg border-2 border-sky-500 duration-200 hover:shadow-xl shadow-sky-500/50">
       <div className="flex flex-col space-y-1.5 p-6">
         <h3 className="text-2xl font-semibold leading-none tracking-tight">
           {title}

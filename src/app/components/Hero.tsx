@@ -22,7 +22,7 @@ export default function Hero() {
           </div>
           <div className="relative h-[300px] rounded-lg overflow-hidden">
             <Image
-              src="/FutbolCiegoTeam.webp?height=600&width=800"
+              src="/FutbolCiegoTeam.webp"
               alt="Equipo Las Pirañas en acción"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
