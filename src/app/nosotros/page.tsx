@@ -43,7 +43,7 @@ export default function page() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="flex items-center p-6 md:order-1">
               <div>
-                <div className="text-2xl mb-4 text-teal-700">
+                <div className="text-2xl mb-4 text-green-600">
                   ¿Quién Lidera?
                 </div>
                 <p className="text-lg">
@@ -81,7 +81,7 @@ export default function page() {
             </div>
             <div className="flex items-center p-6">
               <div>
-                <div className="text-2xl mb-4 text-teal-700">
+                <div className="text-2xl mb-4 text-green-600">
                   ¿Dónde Entrenamos?
                 </div>
                 <p className="text-lg">
@@ -107,7 +107,7 @@ export default function page() {
           <div className="grid md:grid-cols-2 gap-6">
             <div className="flex items-center p-6 md:order-1">
               <div>
-                <div className="text-2xl mb-4 text-teal-700">
+                <div className="text-2xl mb-4 text-green-600">
                   ¿Qué logramos?
                 </div>
                 <p className="text-lg">

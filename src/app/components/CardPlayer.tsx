@@ -2,18 +2,19 @@ import Image from "next/image";
 import React from "react";
 
 export interface PlayerProps {
-    id?:number;
+    _id?:number;
     name: string;
+    lastname: string;
     position: string;
-    type: "male" | "female";
+    type: "Masculino" | "Femenino";
     photo: string
 }
 
-export default function CardPlayer({ name,position,type,photo } : PlayerProps) {
+export default function CardPlayer({ name,position,type,photo,lastname } : PlayerProps) {
   return (
     <div
       className={` ${
-        type === "male"
+        type === "Masculino"
           ? "hover:shadow-xl shadow-green-500/50"
           : "hover:shadow-xl shadow-sky-500/50"
       } overflow-hidden border-2 duration-200`}
@@ -29,10 +30,10 @@ export default function CardPlayer({ name,position,type,photo } : PlayerProps) {
       </div>
       <div
         className={`${
-          type === "male" ? "bg-green-600" : "bg-sky-600"
+          type === "Masculino" ? "bg-green-600" : "bg-sky-600"
         }  text-white`}
       >
-        <p className="p-4">{name}</p>
+        <p className="p-4">{name} {lastname}</p>
       </div>
       <div className="pt-4 p-4">
         <p className="text-muted-foreground">{position}</p>
