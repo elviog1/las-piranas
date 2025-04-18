@@ -26,7 +26,7 @@ export default function Footer() {
                 Instagram
               </Link>
               <Link href="#" className="hover:text-sky-600">
-                Twitter
+                X
               </Link>
             </div>
           </div>

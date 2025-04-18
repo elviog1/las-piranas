@@ -3,15 +3,15 @@ import React from 'react'
 import { NewsProps } from '../noticias/page'
 import Link from 'next/link'
 
-export default function CardNews({title,date,description,slug} : NewsProps) {
+export default function CardNews({title,date,description,slug,photo} : NewsProps) {
   return (
     <div className="rounded-lg border border-sky-600 shadow-sm flex flex-col h-full duration-200 hover:shadow-xl shadow-sky-500/50">
             <div className="relative h-[200px]">
               <Image
-                src={"/laspiranas.webp"}
+                src={photo}
                 fill
                 alt={title}
-                className="object-cover rounded-t-lg"
+                className="rounded-t-lg"
               />
             </div>
             <div className="flex flex-col space-y-1.5 p-6">

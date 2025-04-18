@@ -15,8 +15,10 @@ export async function generateStaticParams() {
 
 // ✅ 2. Cargar una noticia específica según el slug
 export default async function Page({ params }: { params: { slug: string } }) {
+  const url = "http://localhost:3000"
+
   const res = await fetch(`http://localhost:3000/news/${params.slug}`, {
-    next: { revalidate: 60 }, // 🔁 ISR: revalida cada 60s (opcional)
+    next: { revalidate: 60 },
   });
 
   if (!res.ok) {
@@ -28,7 +30,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="pb-6">
-        <Link className="text-green-600 hover:text-green-800" href={"/noticias"}>
+        <Link
+          className="text-green-600 hover:text-green-800"
+          href={"/noticias"}
+        >
           ← Volver a noticias
         </Link>
       </div>
@@ -36,24 +41,27 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <h1 className="text-3xl md:text-4xl font-bold mb-4">{news.title}</h1>
 
         <div className="flex items-center gap-2 text-muted-foreground mb-8">
-          <time dateTime={news.date}>🗓️ {new Date(news.date).toLocaleDateString()}</time>
+          <time dateTime={news.date}>
+            🗓️ {new Date(news.date).toLocaleDateString()}
+          </time>
         </div>
 
         <div className="relative h-[300px] md:h-[400px] mb-8 rounded-lg overflow-hidden">
           <Image
-            src={"/About1.jpg"}
+            src={`${url}${news.photo}`}
             alt={news.title}
             fill
-            className="object-cover"
+            className=""
           />
         </div>
 
         <div className="max-w-none">
-          {news.description.split("\n\n").map((paragraph, index) => (
+         {/*  {news.description.split("\n\n").map((paragraph, index) => (
             <p key={index} className="mb-4">
               {paragraph}
             </p>
-          ))}
+          ))} */}
+          <p className="mb-4">{news.description}</p>
         </div>
       </article>
     </div>

@@ -13,6 +13,7 @@ export interface NewsProps {
 
 export default function page() {
   const [news, setNews] = useState<NewsProps[]>([]);
+  const url = "http://localhost:3000";
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -29,18 +30,22 @@ export default function page() {
   return (
     <div className="container mx-auto px-4 py-12">
       <h1 className="text-4xl font-bold text-center mb-12">Noticias</h1>
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {news.map((news) => (
-          <CardNews
-            key={news._id}
-            title={news.title}
-            description={news.description}
-            date={news.date}
-            slug={news.slug}
-            photo={news.photo}
-          />
-        ))}
-      </div>
+      {news.length === 0 ? (
+        <p>No hay noticias disponibles</p>
+      ) : (
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {news.map((news) => (
+            <CardNews
+              key={news._id}
+              title={news.title}
+              description={news.description}
+              date={news.date}
+              slug={news.slug}
+              photo={url + news.photo}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

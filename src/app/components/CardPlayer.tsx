@@ -15,8 +15,8 @@ export default function CardPlayer({ name,position,type,photo,lastname } : Playe
     <div
       className={` ${
         type === "Masculino"
-          ? "hover:shadow-xl shadow-green-500/50"
-          : "hover:shadow-xl shadow-sky-500/50"
+          ? "hover:shadow-xl shadow-green-500/50 border-green-500"
+          : "hover:shadow-xl shadow-sky-500/50 border-sky-500"
       } overflow-hidden border-2 duration-200`}
     >
       <div className="relative h-[300px]">
@@ -25,7 +25,7 @@ export default function CardPlayer({ name,position,type,photo,lastname } : Playe
           alt={name}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover"
+          className=""
         />
       </div>
       <div

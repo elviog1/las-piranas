@@ -5,11 +5,12 @@ import CardPlayer, { PlayerProps } from "../components/CardPlayer";
 export default function page() {
   const [players,setPlayers] = useState<PlayerProps[]>([])
   const [filter, setFilter] = useState<"all" | "Masculino" | "Femenino">("all");
+  const url = "http://localhost:3000"
 
   useEffect(()=>{
     const fetchPlayers = async ()=>{
       try {
-        const res = await fetch("http://localhost:3000/players")
+        const res = await fetch(`${url}/players`)
         const data = await res.json()
         setPlayers(data)
       } catch (error) {
@@ -30,19 +31,19 @@ export default function page() {
       <div className="w-full">
         <div className="grid gap-4 w-full max-w-md mx-auto grid-cols-3 mb-8">
           <button
-            className="py-2 cursor-pointer hover:text-green-400 border-2 rounded border-green-400"
+            className="py-2 cursor-pointer font-bold text-[#ededed] border-[#ededed] border-2 rounded hover:text-[#000111] hover:bg-[#ededed]"
             onClick={() => setFilter("all")}
           >
             Todos
           </button>
           <button
-            className="py-2 cursor-pointer hover:text-green-400 border-2 rounded border-green-400"
+            className="py-2 cursor-pointer font-bold text-[#ededed] border-[#ededed] border-2 rounded hover:text-[#000111] hover:bg-[#ededed]"
             onClick={() => setFilter("Masculino")}
           >
             Masculino
           </button>
           <button
-            className="py-2 cursor-pointer hover:text-green-400 border-2 rounded border-green-400"
+            className="py-2 cursor-pointer font-bold text-[#ededed] border-[#ededed] border-2 rounded hover:text-[#000111] hover:bg-[#ededed]"
             onClick={() => setFilter("Femenino")}
           >
             Femenino
@@ -58,7 +59,7 @@ export default function page() {
                 lastname={player.lastname}
                 position={player.position}
                 type={player.type}
-                photo="/About1.jpg"
+                photo={url+player.photo}
               />
             ))}
           </div>
