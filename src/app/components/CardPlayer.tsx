@@ -6,7 +6,7 @@ export interface PlayerProps {
     name: string;
     lastname: string;
     position: string;
-    type: "Masculino" | "Femenino";
+    type: "masculino" | "femenino";
     photo: string
 }
 
@@ -14,7 +14,7 @@ export default function CardPlayer({ name,position,type,photo,lastname } : Playe
   return (
     <div
       className={` ${
-        type === "Masculino"
+        type === "masculino"
           ? "hover:shadow-xl shadow-green-500/50 border-green-500"
           : "hover:shadow-xl shadow-sky-500/50 border-sky-500"
       } overflow-hidden border-2 duration-200`}
@@ -25,12 +25,12 @@ export default function CardPlayer({ name,position,type,photo,lastname } : Playe
           alt={name}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className=""
+          className="object-cover"
         />
       </div>
       <div
         className={`${
-          type === "Masculino" ? "bg-green-600" : "bg-sky-600"
+          type === "masculino" ? "bg-green-600" : "bg-sky-600"
         }  text-white`}
       >
         <p className="p-4">{name} {lastname}</p>

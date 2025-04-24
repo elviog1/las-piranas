@@ -4,7 +4,7 @@ import CardPlayer, { PlayerProps } from "../components/CardPlayer";
 
 export default function page() {
   const [players,setPlayers] = useState<PlayerProps[]>([])
-  const [filter, setFilter] = useState<"all" | "Masculino" | "Femenino">("all");
+  const [filter, setFilter] = useState<"all" | "masculino" | "femenino">("all");
   const url = "http://localhost:3000"
 
   useEffect(()=>{
@@ -38,13 +38,13 @@ export default function page() {
           </button>
           <button
             className="py-2 cursor-pointer font-bold text-[#ededed] border-[#ededed] border-2 rounded hover:text-[#000111] hover:bg-[#ededed]"
-            onClick={() => setFilter("Masculino")}
+            onClick={() => setFilter("masculino")}
           >
             Masculino
           </button>
           <button
             className="py-2 cursor-pointer font-bold text-[#ededed] border-[#ededed] border-2 rounded hover:text-[#000111] hover:bg-[#ededed]"
-            onClick={() => setFilter("Femenino")}
+            onClick={() => setFilter("femenino")}
           >
             Femenino
           </button>
