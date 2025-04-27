@@ -1,3 +1,4 @@
+import TableNews from '@/app/components/TableNews'
 import Link from 'next/link'
 import React from 'react'
 
@@ -17,9 +18,7 @@ export default function page() {
         </button>
       </div>
 
-      <div className="rounded-lg border bg-card text-card-foreground shadow-sm p-6">
-        <p className="text-center text-muted-foreground">Aquí se mostrarán las noticias del equipo.</p>
-      </div>
+      <TableNews />
     </div>
   )
 }

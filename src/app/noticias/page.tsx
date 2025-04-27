@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CardNews from "../components/CardNews";
 
 export interface NewsProps {
-  _id?: string;
+  _id: string;
   title: string;
   description: string;
   date: string;
@@ -36,13 +36,15 @@ export default function page() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {news.map((news) => (
             <CardNews
-              key={news._id}
+            key={news._id}
+              _id={news._id}
               title={news.title}
               description={news.description}
               date={news.date}
               slug={news.slug}
               photo={url + news.photo}
-            />
+              />
+            
           ))}
         </div>
       )}

@@ -3,8 +3,8 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 export default function PlayerForm() {
-  const notify = ()=> toast("Jugador creado exitosamente!")
-  const router = useRouter()
+  const notify = () => toast("Jugador creado exitosamente!");
+  const router = useRouter();
   const MAX_FILE_SIZE_MB = 2;
   const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
   const [imageError, setImageError] = useState<string | null>(null);
@@ -18,16 +18,17 @@ export default function PlayerForm() {
   });
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    
     const file = e.target.files?.[0];
-      if (file) {
-        if (file.size > MAX_FILE_SIZE_BYTES) {
-          setImageError(`La imagen es muy grande, debe pesar menos de ${MAX_FILE_SIZE_MB}MB.`);
-          setImageFile(null);
-          setPreview(null);
-          return;
-        }
-        setImageError(null);
+    if (file) {
+      if (file.size > MAX_FILE_SIZE_BYTES) {
+        setImageError(
+          `La imagen es muy grande, debe pesar menos de ${MAX_FILE_SIZE_MB}MB.`
+        );
+        setImageFile(null);
+        setPreview(null);
+        return;
+      }
+      setImageError(null);
       setImageFile(file);
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -41,7 +42,9 @@ export default function PlayerForm() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
@@ -65,18 +68,14 @@ export default function PlayerForm() {
       });
 
       if (res.ok) {
-        notify()
+        notify();
         setFormData({ name: "", lastname: "", position: "", type: "" });
         setImageFile(null);
         setPreview(null);
         setImageError(null);
-      } else {
-        const errorData = await res.json();
-        alert("Error al crear jugador: " + (errorData.message || res.statusText));
       }
     } catch (error) {
-      console.error("Error de red:", error);
-      alert("Error de red al intentar crear el jugador.");
+     toast.error("Error al enviar el formulario, intente mas tarde.")
     }
   };
 
@@ -153,13 +152,24 @@ export default function PlayerForm() {
             </label>
             <div className="flex gap-6">
               <label className="flex items-center gap-2">
-                <input type="radio" name="type" value="masculino" checked={formData.type === "masculino"}
-                  onChange={handleChange} required />
+                <input
+                  type="radio"
+                  name="type"
+                  value="masculino"
+                  checked={formData.type === "masculino"}
+                  onChange={handleChange}
+                  required
+                />
                 <span className="text-sm">Masculino</span>
               </label>
               <label className="flex items-center gap-2">
-                <input type="radio" name="type" value="femenino" checked={formData.type === "femenino"}
-                  onChange={handleChange} />
+                <input
+                  type="radio"
+                  name="type"
+                  value="femenino"
+                  checked={formData.type === "femenino"}
+                  onChange={handleChange}
+                />
                 <span className="text-sm">Femenino</span>
               </label>
             </div>
@@ -196,7 +206,7 @@ export default function PlayerForm() {
           {/* Botones */}
           <div className="flex justify-end gap-4">
             <button
-            onClick={()=> router.back()}
+              onClick={() => router.back()}
               type="button"
               className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-red-600 hover:bg-red-700 h-10 px-4 py-2 cursor-pointer"
             >

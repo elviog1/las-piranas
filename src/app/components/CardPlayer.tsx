@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 export interface PlayerProps {
-    _id?:number;
+    _id:string;
     name: string;
     lastname: string;
     position: string;
