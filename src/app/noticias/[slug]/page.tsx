@@ -2,6 +2,31 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { NewsProps } from "../page";
+import { Metadata } from "next";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const {slug} = await params
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news/${slug}`);
+  
+  if (!res.ok) {
+    return {
+      title: "Noticia no encontrada",
+      description: "La noticia que estás buscando no existe.",
+    };
+  }
+
+  const news: NewsProps = await res.json();
+
+  return {
+    title: news.title,
+    description: news.description,
+    openGraph: {
+      title: news.title,
+      description: news.description,
+      images: [`${process.env.NEXT_PUBLIC_URL_BACKEND}${news.photo}`],
+    },
+  };
+}
 
 // ✅ 1. Generar rutas estáticas en build
 export async function generateStaticParams() {
@@ -55,11 +80,6 @@ export default async function Page({ params }: { params:Promise<{ slug: string }
         </div>
 
         <div className="max-w-none">
-         {/*  {news.description.split("\n\n").map((paragraph, index) => (
-            <p key={index} className="mb-4">
-              {paragraph}
-            </p>
-          ))} */}
           <p className="mb-4">{news.description}</p>
         </div>
       </article>
