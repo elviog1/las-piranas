@@ -10,8 +10,21 @@ export function DashboardSidebar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = async () => {
-    router.push("/");
+    try {
+      const response = await fetch("/api/logout", {
+        method: "POST",
+      });
+  
+      if (!response.ok) {
+        console.error("Error al cerrar sesión");
+      }
+  
+      router.push("/");
+    } catch (error) {
+      console.error("Error en el logout", error);
+    }
   };
+  
 
   const navItems = [
     { href: "/admin/dashboard", label: "Inicio" },

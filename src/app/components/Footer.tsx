@@ -19,15 +19,13 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-bold mb-4 text-green-600">Síguenos</h3>
             <div className="flex gap-4">
-              <Link href="#" className="hover:text-sky-600">
-                Facebook
+              <Link href="https://www.tiktok.com/@futbolciegoavellaneda?lang=es" className="hover:text-sky-600">
+                TikTok
               </Link>
-              <Link href="#" className="hover:text-sky-600">
+              <Link href="https://www.instagram.com/futbolciego_Avellaneda/" className="hover:text-sky-600">
                 Instagram
               </Link>
-              <Link href="#" className="hover:text-sky-600">
-                X
-              </Link>
+              
             </div>
           </div>
         </div>
