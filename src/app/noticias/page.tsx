@@ -13,12 +13,11 @@ export interface NewsProps {
 
 export default function page() {
   const [news, setNews] = useState<NewsProps[]>([]);
-  const url = "http://localhost:3000";
 
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const res = await fetch("http://localhost:3000/news");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news`);
         const data = await res.json();
         setNews(data);
       } catch (error) {
@@ -36,15 +35,14 @@ export default function page() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {news.map((news) => (
             <CardNews
-            key={news._id}
+              key={news._id}
               _id={news._id}
               title={news.title}
               description={news.description}
               date={news.date}
               slug={news.slug}
-              photo={url + news.photo}
-              />
-            
+              photo={`${process.env.NEXT_PUBLIC_URL_BACKEND}${news.photo}`}
+            />
           ))}
         </div>
       )}

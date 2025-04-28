@@ -8,11 +8,10 @@ export default function TableNews() {
   const notify = () => toast("Noticia Eliminado exitosamente!");
   const [news, setNews] = useState<NewsProps[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const url = "http://localhost:3000";
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const res = await fetch(url + "/news");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news`);
         const data = await res.json();
         setNews(data);
         setLoading(false);
@@ -25,7 +24,7 @@ export default function TableNews() {
 
   const handleDelete = async (idNews: string) => {
     try {
-      const res = await fetch(`${url}/news/${idNews}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news/${idNews}`, {
         method: "DELETE",
       });
       if (res.ok) {
@@ -70,7 +69,7 @@ export default function TableNews() {
                     <td className="p-4">
                       <div className="w-12 h-12 rounded-full overflow-hidden">
                         <Image
-                          src={url + item.photo}
+                          src={`${process.env.NEXT_PUBLIC_URL_BACKEND}${item.photo}`}
                           alt={`${item.title}`}
                           className="w-full h-full object-cover"
                           width={100}

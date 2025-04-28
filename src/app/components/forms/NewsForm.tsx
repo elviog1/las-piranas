@@ -60,7 +60,7 @@ export default function NewsForm() {
       data.append("photo", imageFile);
     }
     try {
-      const res = await fetch("http://localhost:3000/news", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news`, {
         method: "POST",
         body: data,
       });

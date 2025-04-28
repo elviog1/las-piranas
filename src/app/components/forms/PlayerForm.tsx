@@ -62,7 +62,7 @@ export default function PlayerForm() {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/players", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/players`, {
         method: "POST",
         body: data,
       });

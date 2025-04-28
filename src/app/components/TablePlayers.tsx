@@ -8,11 +8,10 @@ export default function TablePlayers() {
   const notify = () => toast("Jugador Eliminado exitosamente!");
   const [players, setPlayers] = useState<PlayerProps[]>([]);
   const [loading,setLoading] = useState<boolean>(true)
-  const url = "http://localhost:3000";
   useEffect(() => {
     const fetchPlayer = async () => {
       try {
-        const res = await fetch(url + "/players");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/players`);
         const data = await res.json();
         setPlayers(data);
         setLoading(false)
@@ -25,7 +24,7 @@ export default function TablePlayers() {
 
   const handleDelete = async (idPlayer: string) => {
     try {
-      const res = await fetch(`${url}/players/${idPlayer}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/players/${idPlayer}`, {
         method: "DELETE",
       });
       if (res.ok) {
@@ -70,7 +69,7 @@ export default function TablePlayers() {
                     <td className="p-4">
                       <div className="w-12 h-12 rounded-full overflow-hidden">
                         <Image
-                          src={url + player.photo}
+                          src={`${process.env.NEXT_PUBLIC_URL_BACKEND}${player.photo}`}
                           alt={`${player.name} ${player.lastname}`}
                           className="w-full h-full object-cover"
                           width={100}

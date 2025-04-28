@@ -3,25 +3,28 @@ import React, { useEffect, useState } from "react";
 import CardPlayer, { PlayerProps } from "../components/CardPlayer";
 
 export default function page() {
-  const [players,setPlayers] = useState<PlayerProps[]>([])
+  const [players, setPlayers] = useState<PlayerProps[]>([]);
   const [filter, setFilter] = useState<"all" | "masculino" | "femenino">("all");
-  const url = "http://localhost:3000"
 
-  useEffect(()=>{
-    const fetchPlayers = async ()=>{
+  useEffect(() => {
+    const fetchPlayers = async () => {
       try {
-        const res = await fetch(`${url}/players`)
-        const data = await res.json()
-        setPlayers(data)
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_URL_BACKEND}/players`
+        );
+        const data = await res.json();
+        setPlayers(data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    fetchPlayers()
-  },[])
+    };
+    fetchPlayers();
+  }, []);
 
   const filteredTeam =
-    filter === "all" ? players : players.filter((player) => player.type === filter);
+    filter === "all"
+      ? players
+      : players.filter((player) => player.type === filter);
 
   return (
     <div className="px-4 py-12 container mx-auto">
@@ -54,12 +57,13 @@ export default function page() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredTeam.map((player) => (
               <CardPlayer
+                _id={player._id}
                 key={player._id}
                 name={player.name}
                 lastname={player.lastname}
                 position={player.position}
                 type={player.type}
-                photo={url+player.photo}
+                photo={`${process.env.NEXT_PUBLIC_URL_BACKEND}` + player.photo}
               />
             ))}
           </div>

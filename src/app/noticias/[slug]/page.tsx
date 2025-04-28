@@ -5,7 +5,7 @@ import { NewsProps } from "../page";
 
 // ✅ 1. Generar rutas estáticas en build
 export async function generateStaticParams() {
-  const res = await fetch("http://localhost:3000/news"); // ⚠️ cambiar por tu dominio real en producción
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news`); // ⚠️ cambiar por tu dominio real en producción
   const data: NewsProps[] = await res.json();
 
   return data.map((item) => ({
@@ -14,10 +14,9 @@ export async function generateStaticParams() {
 }
 
 // ✅ 2. Cargar una noticia específica según el slug
-export default async function Page({ params }: { params: { slug: string } }) {
-  const url = "http://localhost:3000"
-
-  const res = await fetch(`http://localhost:3000/news/${params.slug}`, {
+export default async function Page({ params }: { params:Promise<{ slug: string }>  }) {
+  const {slug} = await params
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news/${slug}`, {
     next: { revalidate: 60 },
   });
 
@@ -48,7 +47,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
         <div className="relative h-[300px] md:h-[400px] mb-8 rounded-lg overflow-hidden">
           <Image
-            src={`${url}${news.photo}`}
+            src={`${process.env.NEXT_PUBLIC_URL_BACKEND}${news.photo}`}
             alt={news.title}
             fill
             className=""
