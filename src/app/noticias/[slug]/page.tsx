@@ -6,7 +6,7 @@ import { Metadata } from "next";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const {slug} = await params
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news/${slug}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news/new/${slug}`);
   
   if (!res.ok) {
     return {
@@ -41,7 +41,7 @@ export async function generateStaticParams() {
 // ✅ 2. Cargar una noticia específica según el slug
 export default async function Page({ params }: { params:Promise<{ slug: string }>  }) {
   const {slug} = await params
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news/${slug}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news/new/${slug}`, {
     next: { revalidate: 60 },
   });
 

@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { NewsProps } from "../noticias/page";
+import Link from "next/link";
 
 export default function TableNews() {
   const notify = () => toast("Noticia Eliminado exitosamente!");
@@ -17,6 +18,7 @@ export default function TableNews() {
         setLoading(false);
       } catch (error) {
         setLoading(true);
+        toast.error("No se pudo encontrar las noticias");
       }
     };
     fetchNews();
@@ -92,7 +94,7 @@ export default function TableNews() {
                     </td>
                     <td className="p-4 text-right">
                       <div className="flex justify-end gap-2">
-                        <button className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground h-9 w-9 p-0">
+                        <Link href={`/admin/dashboard/noticias/${item._id}`} className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-slate-500 h-9 w-9 p-0">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
@@ -108,7 +110,7 @@ export default function TableNews() {
                             <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
                           </svg>
                           <span className="sr-only">Editar</span>
-                        </button>
+                        </Link>
                         <button
                           onClick={() => handleDelete(item._id)}
                           className=" cursor-pointer inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent hover:text-accent-foreground h-9 w-9 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"

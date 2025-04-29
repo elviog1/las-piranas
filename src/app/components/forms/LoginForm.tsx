@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
   const [formData, setFormData] = useState({ name: "", password: "" });
@@ -18,7 +19,7 @@ export default function LoginForm() {
           setIsBackendReady(true);
         }
       } catch (error) {
-        console.log(error);
+        toast.error("Error al iniciar sesion");
       }
     };
     checkBackend();
@@ -43,14 +44,12 @@ export default function LoginForm() {
         body: JSON.stringify(formData),
       });
       const data = await response.json();
-      console.log(data.message)
       if (!response.ok) {
         setErrorMessage(data.message);
-        throw new Error(data.message || "Error al iniciar sesion");
       }
       router.push("/admin/dashboard");
     } catch (error) {
-      console.log(error);
+      toast.error("Error en el formulario");
     }
   };
 

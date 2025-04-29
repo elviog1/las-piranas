@@ -16,7 +16,6 @@ export async function POST(req:NextRequest){
         )
         return NextResponse.json({message:"Session cerrada exitosamente"},{headers})
     } catch (error) {
-        console.log(error)
         return NextResponse.json({message:"Error interno del servidor"},{status:500})
     }
 }

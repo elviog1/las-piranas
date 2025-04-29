@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import CardNews from "../components/CardNews";
+import { toast } from "react-toastify";
 
 export interface NewsProps {
   _id: string;
@@ -19,9 +20,9 @@ export default function page() {
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news`);
         const data = await res.json();
-        setNews(data);
+        setNews(data.reverse());
       } catch (error) {
-        console.log(error);
+        toast.error("Error, no se encontraron las noticias");
       }
     };
     fetchNews();

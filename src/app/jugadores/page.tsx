@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import CardPlayer, { PlayerProps } from "../components/CardPlayer";
+import { toast } from "react-toastify";
 
 export default function page() {
   const [players, setPlayers] = useState<PlayerProps[]>([]);
@@ -15,7 +16,7 @@ export default function page() {
         const data = await res.json();
         setPlayers(data);
       } catch (error) {
-        console.log(error);
+        toast.error("Error, no se encontraron los jugadores");
       }
     };
     fetchPlayers();

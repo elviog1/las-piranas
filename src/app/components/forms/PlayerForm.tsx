@@ -2,19 +2,33 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-export default function PlayerForm() {
-  const notify = () => toast("Jugador creado exitosamente!");
+
+interface PlayerFormProps {
+  player?: {
+    _id: string;
+    name: string;
+    lastname: string;
+    position: string;
+    type: string;
+    photo?: string;
+  };
+}
+export default function PlayerForm({ player }: PlayerFormProps) {
+  const notifyCreate = () => toast("Jugador creado exitosamente!");
+  const notifyUpdate = () => toast("Jugador actualizado exitosamente!");
   const router = useRouter();
   const MAX_FILE_SIZE_MB = 2;
   const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
   const [imageError, setImageError] = useState<string | null>(null);
-  const [preview, setPreview] = useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(
+    player?.photo ? `${process.env.NEXT_PUBLIC_URL_BACKEND}${player.photo}` : null
+  );
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [formData, setFormData] = useState({
-    name: "",
-    lastname: "",
-    position: "",
-    type: "",
+    name: player?.name || "",
+    lastname: player?.lastname || "",
+    position: player?.position || "",
+    type: player?.type || "",
   });
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,21 +75,25 @@ export default function PlayerForm() {
       data.append("photo", imageFile);
     }
 
+    const url = player
+      ? `${process.env.NEXT_PUBLIC_URL_BACKEND}/players/${player._id}`
+      : `${process.env.NEXT_PUBLIC_URL_BACKEND}/players`;
+    const method = player ? "PATCH" : "POST";
+
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/players`, {
-        method: "POST",
+      const res = await fetch(url, {
+        method: method,
         body: data,
       });
 
       if (res.ok) {
-        notify();
-        setFormData({ name: "", lastname: "", position: "", type: "" });
-        setImageFile(null);
-        setPreview(null);
-        setImageError(null);
+        player ? notifyUpdate() : notifyCreate();
+        router.push("/admin/dashboard/jugadores");
+      } else {
+        toast.error("Error al guardar el jugador");
       }
     } catch (error) {
-     toast.error("Error al enviar el formulario, intente mas tarde.")
+      toast.error("Error en el formulario");
     }
   };
 
@@ -89,7 +107,7 @@ export default function PlayerForm() {
               htmlFor="name"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Nombre
+              Nombre <span className="text-red-500">*</span>
             </label>
             <input
               id="name"
@@ -108,7 +126,7 @@ export default function PlayerForm() {
               htmlFor="lastName"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Apellido
+              Apellido <span className="text-red-500">*</span>
             </label>
             <input
               id="lastName"
@@ -127,7 +145,7 @@ export default function PlayerForm() {
               htmlFor="position"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Posición
+              Posición <span className="text-red-500">*</span>
             </label>
             <select
               id="position"
@@ -148,7 +166,7 @@ export default function PlayerForm() {
           {/* Tipo */}
           <div className="space-y-2">
             <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-              Tipo
+              Tipo <span className="text-red-500">*</span>
             </label>
             <div className="flex gap-6">
               <label className="flex items-center gap-2">

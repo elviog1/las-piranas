@@ -34,7 +34,6 @@ export async function POST(req:NextRequest) {
     )
     return NextResponse.json({message:"Inicio de sesion exitoso"},{headers})
   } catch (error) {
-    console.log(error);
     return NextResponse.json({message:"Ocurrio un error con el servidor"},{status:500})
   }
 }

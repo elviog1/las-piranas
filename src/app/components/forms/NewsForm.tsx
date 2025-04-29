@@ -3,18 +3,32 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-export default function NewsForm() {
-  const notify = () => toast("Noticia creado exitosamente!");
+interface NewsFormProps {
+  news?: {
+    _id: string;
+    title: string;
+    description: string;
+    date: string;
+    slug?: string;
+    photo?: string;
+  };
+}
+
+export default function NewsForm({ news }: NewsFormProps) {
+  const notifyCreate = () => toast("Noticia creado exitosamente!");
+  const notifyUpdate = () => toast("Noticia actualizado exitosamente!");
   const router = useRouter();
   const MAX_FILE_SIZE_MB = 2;
   const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
-  const [imageError, setImageError] = useState("");
-  const [preview, setPreview] = useState<string | null>(null);
+  const [imageError, setImageError] = useState<string | null>(null);
+  const [preview, setPreview] = useState<string | null>(
+    news?.photo ? `${process.env.NEXT_PUBLIC_URL_BACKEND}${news.photo}` : null
+  );
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    date: ""
+    title: news?.title || "",
+    description: news?.description || "",
+    date: news?.date || "",
   });
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,20 +73,25 @@ export default function NewsForm() {
     if (imageFile) {
       data.append("photo", imageFile);
     }
+    const url = news
+      ? `${process.env.NEXT_PUBLIC_URL_BACKEND}/news/${news._id}`
+      : `${process.env.NEXT_PUBLIC_URL_BACKEND}/news`;
+    const method = news ? "PATCH" : "POST";
+
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news`, {
-        method: "POST",
+      const res = await fetch(url, {
+        method: method,
         body: data,
       });
+
       if (res.ok) {
-        notify();
-        setImageFile(null);
-        setPreview(null);
-        setImageError("");
-        setFormData({title:"",description:"",date:""})
+        news ? notifyUpdate() : notifyCreate();
+        router.push("/admin/dashboard/noticias");
+      } else {
+        toast.error("Error al guardar la noticia");
       }
     } catch (error) {
-      toast.error("Error al enviar el formulario, intente mas tarde.");
+      toast.error("Error en el formulario");
     }
   };
 
@@ -85,11 +104,12 @@ export default function NewsForm() {
               htmlFor="title"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Título
+              Título <span className="text-red-500">*</span>
             </label>
             <input
               id="title"
               name="title"
+              value={formData.title}
               onChange={handleChange}
               className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               placeholder="Título de la noticia"
@@ -102,9 +122,10 @@ export default function NewsForm() {
               htmlFor="description"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Descripción
+              Descripción <span className="text-red-500">*</span>
             </label>
             <textarea
+             value={formData.description}
               onChange={handleChange}
               id="description"
               name="description"
@@ -120,9 +141,10 @@ export default function NewsForm() {
               htmlFor="date"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             >
-              Fecha
+              Fecha <span className="text-red-500">*</span>
             </label>
             <input
+             value={formData.date}
               onChange={handleChange}
               id="date"
               name="date"
