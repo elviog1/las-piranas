@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
@@ -21,7 +22,9 @@ export default function PlayerForm({ player }: PlayerFormProps) {
   const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
   const [imageError, setImageError] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(
-    player?.photo ? `${process.env.NEXT_PUBLIC_URL_BACKEND}${player.photo}` : null
+    player?.photo
+      ? `${process.env.NEXT_PUBLIC_URL_BACKEND}${player.photo}`
+      : null
   );
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [formData, setFormData] = useState({
@@ -92,7 +95,7 @@ export default function PlayerForm({ player }: PlayerFormProps) {
       } else {
         toast.error("Error al guardar el jugador");
       }
-    } catch  {
+    } catch {
       toast.error("Error en el formulario");
     }
   };
@@ -209,10 +212,14 @@ export default function PlayerForm({ player }: PlayerFormProps) {
               onChange={handleImageChange}
               className="block text-sm w-96 text-muted-foreground file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100"
             />
-            {imageError && <p className="text-red-500 text-sm">{imageError}</p>}
+            {imageError ? (
+              <p className="text-red-500 text-sm">{imageError}</p>
+            ) : null}
             {preview && !imageError && (
               <div className="mt-2">
-                <img
+                <Image
+                  width={200}
+                  height={200}
                   src={preview}
                   alt="Vista previa"
                   className="max-h-48 rounded-md border object-cover"

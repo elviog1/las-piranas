@@ -11,7 +11,7 @@ export default function CardNews({title,date,description,slug,photo} : NewsProps
                 src={photo}
                 fill
                 alt={title}
-                className="rounded-t-lg"
+                className="rounded-t-lg object-cover"
               />
             </div>
             <div className="flex flex-col space-y-1.5 p-6">

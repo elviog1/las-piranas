@@ -75,7 +75,7 @@ export default async function NewsPage({ params }: { params:Promise<{ slug: stri
             src={`${process.env.NEXT_PUBLIC_URL_BACKEND}${news.photo}`}
             alt={news.title}
             fill
-            className=""
+            className="object-cover"
           />
         </div>
 
