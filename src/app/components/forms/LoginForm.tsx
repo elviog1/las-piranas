@@ -18,7 +18,7 @@ export default function LoginForm() {
         if (response.ok) {
           setIsBackendReady(true);
         }
-      } catch (error) {
+      } catch  {
         toast.error("Error al iniciar sesion");
       }
     };
@@ -48,7 +48,7 @@ export default function LoginForm() {
         setErrorMessage(data.message);
       }
       router.push("/admin/dashboard");
-    } catch (error) {
+    } catch  {
       toast.error("Error en el formulario");
     }
   };

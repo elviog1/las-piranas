@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function POST(req:NextRequest){
+export async function POST(){
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/auth/logout`,{
             method:'POST',
@@ -16,6 +16,6 @@ export async function POST(req:NextRequest){
         )
         return NextResponse.json({message:"Session cerrada exitosamente"},{headers})
     } catch (error) {
-        return NextResponse.json({message:"Error interno del servidor"},{status:500})
+        return NextResponse.json({message:"Error interno del servidor",error},{status:500})
     }
 }

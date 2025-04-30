@@ -2,8 +2,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import PlayerForm from "@/app/components/forms/PlayerForm";
+import { toast } from "react-toastify";
 
-export default function EditarJugadorPage() {
+export default function EditPlayerPage() {
   const { id } = useParams();
   const [player, setPlayer] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -11,11 +12,11 @@ export default function EditarJugadorPage() {
   useEffect(() => {
     const fetchPlayer = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/players/${id}`);
+        const res = await fetch(`/${id}`);
         const data = await res.json();
         setPlayer(data);
-      } catch (error) {
-        console.error("Error al obtener jugador");
+      } catch {
+        toast.error("Error");
       } finally {
         setLoading(false);
       }

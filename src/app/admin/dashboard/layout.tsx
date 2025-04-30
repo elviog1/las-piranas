@@ -1,6 +1,5 @@
 import type React from "react"
-import { cookies } from "next/headers"
-import { redirect } from "next/navigation"
+
 import { DashboardSidebar } from "@/app/components/DashboardSidebar"
 
 export default function DashboardLayout({
@@ -8,7 +7,6 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  // Verificar sesión en el servidor
 
   return (
     <div className="flex min-h-screen flex-col md:flex-row">

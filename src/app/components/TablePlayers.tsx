@@ -16,7 +16,7 @@ export default function TablePlayers() {
         const data = await res.json();
         setPlayers(data);
         setLoading(false)
-      } catch (error) {
+      } catch {
         setLoading(true)
         toast.error("No se pudo encontrar los jugadores");
       }
@@ -33,7 +33,7 @@ export default function TablePlayers() {
         setPlayers((prev) => prev.filter((p) => p._id !== idPlayer));
         notify();
       }
-    } catch (error) {
+    } catch {
       toast.error("Error al borrar el jugador")
     }
   };

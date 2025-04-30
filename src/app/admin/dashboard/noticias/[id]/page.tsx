@@ -14,7 +14,7 @@ export default function EditarNewsPage() {
         const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news/${id}`);
         const data = await res.json();
         setNews(data);
-      } catch (error) {
+      } catch {
         toast.error("Error en el formulario");
       } finally {
         setLoading(false);

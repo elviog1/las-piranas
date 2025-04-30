@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CardPlayer, { PlayerProps } from "../components/CardPlayer";
 import { toast } from "react-toastify";
 
-export default function page() {
+export default function PlayerPage() {
   const [players, setPlayers] = useState<PlayerProps[]>([]);
   const [filter, setFilter] = useState<"all" | "masculino" | "femenino">("all");
 
@@ -15,7 +15,7 @@ export default function page() {
         );
         const data = await res.json();
         setPlayers(data);
-      } catch (error) {
+      } catch {
         toast.error("Error, no se encontraron los jugadores");
       }
     };

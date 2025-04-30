@@ -39,7 +39,7 @@ export async function generateStaticParams() {
 }
 
 // ✅ 2. Cargar una noticia específica según el slug
-export default async function Page({ params }: { params:Promise<{ slug: string }>  }) {
+export default async function NewsPage({ params }: { params:Promise<{ slug: string }>  }) {
   const {slug} = await params
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news/new/${slug}`, {
     next: { revalidate: 60 },

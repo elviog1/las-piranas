@@ -92,7 +92,7 @@ export default function PlayerForm({ player }: PlayerFormProps) {
       } else {
         toast.error("Error al guardar el jugador");
       }
-    } catch (error) {
+    } catch  {
       toast.error("Error en el formulario");
     }
   };

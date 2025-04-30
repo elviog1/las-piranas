@@ -90,7 +90,7 @@ export default function NewsForm({ news }: NewsFormProps) {
       } else {
         toast.error("Error al guardar la noticia");
       }
-    } catch (error) {
+    } catch  {
       toast.error("Error en el formulario");
     }
   };

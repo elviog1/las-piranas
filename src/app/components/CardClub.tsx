@@ -1,7 +1,13 @@
 import Image from "next/image";
 import React from "react";
 
-export default function CardClub({title,description,img} :any) {
+type CardClubProps ={
+  title:string
+  description:string
+  img:string
+}
+
+export default function CardClub({title,description,img} :CardClubProps) {
   return (
     <div className="rounded-lg border-2 border-sky-500 duration-200 hover:shadow-xl shadow-sky-500/50">
       <div className="flex flex-col space-y-1.5 p-6">

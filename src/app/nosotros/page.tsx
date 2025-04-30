@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-export default function page() {
+export default function AboutPage() {
   return (
     <div className="px-4 py-12 container mx-auto">
       <h1 className="text-4xl font-bold text-center mb-12">Sobre Nosotros</h1>

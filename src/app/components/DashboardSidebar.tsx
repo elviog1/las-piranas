@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export function DashboardSidebar() {
   const pathname = usePathname();
@@ -20,8 +21,8 @@ export function DashboardSidebar() {
       }
   
       router.push("/");
-    } catch (error) {
-      console.error("Error en el logout", error);
+    } catch {
+      toast.error("Error");
     }
   };
   

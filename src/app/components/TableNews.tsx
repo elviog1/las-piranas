@@ -16,7 +16,7 @@ export default function TableNews() {
         const data = await res.json();
         setNews(data);
         setLoading(false);
-      } catch (error) {
+      } catch{
         setLoading(true);
         toast.error("No se pudo encontrar las noticias");
       }
@@ -33,7 +33,7 @@ export default function TableNews() {
         setNews((prev) => prev.filter((p) => p._id !== idNews));
         notify();
       }
-    } catch (error) {
+    } catch {
       toast.error("Error al borrar la noticia");
     }
   };

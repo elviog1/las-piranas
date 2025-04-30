@@ -12,7 +12,7 @@ export interface NewsProps {
   slug: string;
 }
 
-export default function page() {
+export default function NewsPage() {
   const [news, setNews] = useState<NewsProps[]>([]);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function page() {
         const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/news`);
         const data = await res.json();
         setNews(data.reverse());
-      } catch (error) {
+      } catch {
         toast.error("Error, no se encontraron las noticias");
       }
     };
