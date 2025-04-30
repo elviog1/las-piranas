@@ -90,7 +90,11 @@ export default function PlayerForm({ player }: PlayerFormProps) {
       });
 
       if (res.ok) {
-        player ? notifyUpdate() : notifyCreate();
+        if (player) {
+          notifyUpdate();
+        } else {
+          notifyCreate();
+        }
         router.push("/admin/dashboard/jugadores");
       } else {
         toast.error("Error al guardar el jugador");

@@ -86,7 +86,11 @@ export default function NewsForm({ news }: NewsFormProps) {
       });
 
       if (res.ok) {
-        news ? notifyUpdate() : notifyCreate();
+        if (news) {
+          notifyUpdate();
+        } else {
+          notifyCreate();
+        }
         router.push("/admin/dashboard/noticias");
       } else {
         toast.error("Error al guardar la noticia");
