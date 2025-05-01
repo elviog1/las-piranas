@@ -76,6 +76,7 @@ export default async function NewsPage({ params }: { params:Promise<{ slug: stri
             alt={news.title}
             fill
             className="object-cover"
+            unoptimized
           />
         </div>
 
