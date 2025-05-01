@@ -16,7 +16,7 @@ export default function Hero() {
                 <Link className="bg-green-600 hover:bg-green-700 duration-200 p-3 rounded" href="/nosotros">Conoce más</Link>
               </button>
               <button >
-                <Link className="bg-sky-600 hover:bg-sky-700 duration-200 p-3 rounded" href="/players">Nuestros jugadores</Link>
+                <Link className="bg-sky-600 hover:bg-sky-700 duration-200 p-3 rounded" href="/jugadores">Nuestros jugadores</Link>
               </button>
             </div>
           </div>
