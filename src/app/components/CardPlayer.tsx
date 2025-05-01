@@ -24,7 +24,6 @@ export default function CardPlayer({ name,position,type,photo,lastname } : Playe
           src={photo}
           alt={name}
           fill
-          unoptimized
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover"
         />
