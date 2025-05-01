@@ -12,7 +12,6 @@ export default function CardNews({title,date,description,slug,photo} : NewsProps
                 fill
                 alt={title}
                 className="rounded-t-lg object-cover"
-                crossOrigin='anonymous'
               />
             </div>
             <div className="flex flex-col space-y-1.5 p-6">
