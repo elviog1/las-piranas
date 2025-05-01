@@ -2,10 +2,12 @@
 import React, { useEffect, useState } from "react";
 import CardPlayer, { PlayerProps } from "../components/CardPlayer";
 import { toast } from "react-toastify";
+import CardSkeleton from "../components/CardSkeleton";
 
 export default function PlayerPage() {
   const [players, setPlayers] = useState<PlayerProps[]>([]);
   const [filter, setFilter] = useState<"all" | "masculino" | "femenino">("all");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPlayers = async () => {
@@ -17,6 +19,8 @@ export default function PlayerPage() {
         setPlayers(data);
       } catch {
         toast.error("Error, no se encontraron los jugadores");
+      } finally {
+        setLoading(false);
       }
     };
     fetchPlayers();
@@ -56,17 +60,23 @@ export default function PlayerPage() {
 
         <div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredTeam.map((player) => (
-              <CardPlayer
-                _id={player._id}
-                key={player._id}
-                name={player.name}
-                lastname={player.lastname}
-                position={player.position}
-                type={player.type}
-                photo={`${process.env.NEXT_PUBLIC_URL_BACKEND}` + player.photo}
-              />
-            ))}
+            {loading
+              ? Array.from({ length: 6 }).map((_, index) => (
+                  <CardSkeleton key={index} />
+                ))
+              : filteredTeam.map((player) => (
+                  <CardPlayer
+                    _id={player._id}
+                    key={player._id}
+                    name={player.name}
+                    lastname={player.lastname}
+                    position={player.position}
+                    type={player.type}
+                    photo={
+                      `${process.env.NEXT_PUBLIC_URL_BACKEND}` + player.photo
+                    }
+                  />
+                ))}
           </div>
         </div>
       </div>
