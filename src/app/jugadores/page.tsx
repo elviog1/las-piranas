@@ -8,7 +8,7 @@ export default function PlayerPage() {
   const [players, setPlayers] = useState<PlayerProps[]>([]);
   const [filter, setFilter] = useState<"all" | "masculino" | "femenino">("all");
   const [loading, setLoading] = useState(true);
-
+console.log(players)
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
@@ -72,9 +72,7 @@ export default function PlayerPage() {
                     lastname={player.lastname}
                     position={player.position}
                     type={player.type}
-                    photo={
-                      `${process.env.NEXT_PUBLIC_URL_BACKEND}` + player.photo
-                    }
+                    photo={player.photo}
                   />
                 ))}
           </div>

@@ -71,7 +71,7 @@ export default function TableNews() {
                     <td className="p-4">
                       <div className="w-12 h-12 rounded-full overflow-hidden">
                         <Image
-                          src={`${process.env.NEXT_PUBLIC_URL_BACKEND}${item.photo}`}
+                          src={item.photo}
                           alt={`${item.title}`}
                           className="w-full h-full object-cover"
                           width={100}

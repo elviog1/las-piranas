@@ -23,7 +23,7 @@ export default function NewsForm({ news }: NewsFormProps) {
   const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
   const [imageError, setImageError] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(
-    news?.photo ? `${process.env.NEXT_PUBLIC_URL_BACKEND}${news.photo}` : null
+    news?.photo ? `${news.photo}` : null
   );
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [formData, setFormData] = useState({

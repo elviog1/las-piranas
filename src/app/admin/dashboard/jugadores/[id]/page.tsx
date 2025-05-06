@@ -12,7 +12,7 @@ export default function EditPlayerPage() {
   useEffect(() => {
     const fetchPlayer = async () => {
       try {
-        const res = await fetch(`/${id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACKEND}/players/${id}`);
         const data = await res.json();
         setPlayer(data);
       } catch {
@@ -24,6 +24,7 @@ export default function EditPlayerPage() {
 
     fetchPlayer();
   }, [id]);
+  console.log(player)
 
   if (loading) return <p>Cargando...</p>;
   if (!player) return <p>Jugador no encontrado</p>;

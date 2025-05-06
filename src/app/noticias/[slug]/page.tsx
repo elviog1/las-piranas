@@ -72,7 +72,7 @@ export default async function NewsPage({ params }: { params:Promise<{ slug: stri
 
         <div className="relative h-[400px] md:h-[700px] mb-8 rounded-lg overflow-hidden">
           <Image
-            src={`${process.env.NEXT_PUBLIC_URL_BACKEND}${news.photo}`}
+            src={news.photo}
             alt={news.title}
             fill
             className="object-cover"

@@ -71,7 +71,7 @@ export default function TablePlayers() {
                     <td className="p-4">
                       <div className="w-12 h-12 rounded-full overflow-hidden">
                         <Image
-                          src={`${process.env.NEXT_PUBLIC_URL_BACKEND}${player.photo}`}
+                          src={player.photo}
                           alt={`${player.name} ${player.lastname}`}
                           className="w-full h-full object-cover"
                           width={100}

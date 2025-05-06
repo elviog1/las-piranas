@@ -23,7 +23,7 @@ export default function PlayerForm({ player }: PlayerFormProps) {
   const [imageError, setImageError] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(
     player?.photo
-      ? `${process.env.NEXT_PUBLIC_URL_BACKEND}${player.photo}`
+      ? `${player.photo}`
       : null
   );
   const [imageFile, setImageFile] = useState<File | null>(null);

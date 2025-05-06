@@ -48,7 +48,7 @@ export default function NewsPage() {
               description={news.description}
               date={news.date}
               slug={news.slug}
-              photo={`${process.env.NEXT_PUBLIC_URL_BACKEND}${news.photo}`}
+              photo={news.photo}
             />
           ))
         }

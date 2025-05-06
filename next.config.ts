@@ -6,8 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns:[
       {
         protocol:'https',
-        hostname:'las-piranas-back.onrender.com',
-        pathname: '/uploads/**'
+        hostname:'res.cloudinary.com'
       }
     ]
   }
